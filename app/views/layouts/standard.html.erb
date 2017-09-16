@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!-- Website template by freewebsitetemplates.com -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>UZ Currency Exchange Ltd.</title>
+	<%= stylesheet_link_tag "style" %>
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %>
+</head>
+<body>
+	<div id="page">
+		<div id="header">
+			<a href="/currencies" id="logo"><img src="images/logo.png" alt="Logo"></a>
+			
+			<% if signed_in? %>
+				<%= render "layouts/menu" %>
+			<%end%>
+		</div>
+		<div id="body">
+			<div class="body">
+				
+				<%= yield %>
+			</div>
+			
+		</div>
+		<div id="footer">
+		
+			<p>
+				Productive &copy; 2023  | All Rights Reserved
+			</p>
+		</div>
+	</div>
+</body>
+</html>

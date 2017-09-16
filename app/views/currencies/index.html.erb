@@ -1,0 +1,33 @@
+<h1>Import Products</h1>
+
+<%= form_tag import_currencies_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
+
+<h1>Listing Currencies</h1>
+
+
+<table class="gridtable">
+  <tr>
+    <th>Name</th>
+    <th>Code</th>
+	<th>Buy Rate</th>
+    <th>Sell Rate</th>
+  </tr>
+
+  <% @currencies.each do |currency| %>
+    <tr>
+      <td><%= currency.currencyname %></td>
+      <td><%= currency.currencycode %></td>
+      <td><%= currency.buyrate %></td>
+      <td><%= currency.sellrate %></td>
+	  <td><%= link_to 'Show', currency_path(currency) %></td>
+	  <td><%= link_to 'Edit', edit_currency_path(currency) %></td>
+	  <td><%= link_to 'Destroy', currency_path(currency),
+                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'New currency', new_currency_path %> 

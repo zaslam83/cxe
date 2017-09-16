@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  currencyname: MyString
+  currencycode: MyString
+  buyrate: 
+  sellrate: 
+
+two:
+  currencyname: MyString
+  currencycode: MyString
+  buyrate: 
+  sellrate: 

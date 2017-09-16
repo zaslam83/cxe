@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  openingbalance: 9.99
+  currentbalance: 9.99
+  currency: 
+  branch: 
+
+two:
+  openingbalance: 9.99
+  currentbalance: 9.99
+  currency: 
+  branch: 

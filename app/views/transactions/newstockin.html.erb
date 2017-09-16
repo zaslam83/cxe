@@ -1,0 +1,37 @@
+<h1> Stock In </h1>
+<%= form_for :transaction, url: tran_stockin_path do |s| %>
+
+<% if @transaction.errors.any? %>
+  <div id="errorExplanation">
+    <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited
+      this transaction from being saved:</h2>
+    <ul>
+    <% @transaction.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <p>
+	<%= s.label :'Branch: '%>
+	<%= @current_user.branch.name %>
+  </p>
+
+  <p>
+	<%= s.label :'Currency Code'%><br>
+	<%= collection_select(:transaction, :currency_id, Currency.all, :id, :currencycode, prompt: true) %>
+  </p>
+  
+  <p>
+	<%= s.label :'Amount'%><br>
+	<%= s.text_field :amount %>
+  </p>
+  
+  
+ <p>
+    <%= s.submit %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', currencies_path %>

@@ -1,0 +1,56 @@
+<%= form_for @user do |b| %>
+ 
+<% if @user.errors.any? %>
+  <div id="errorExplanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited
+      this user from being saved:</h2>
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+
+ <p>
+    <%= b.label :Name %><br>
+    <%= b.text_field :name %>
+  </p>
+ 
+ <p>
+    <%= b.label :'User Name' %><br>
+    <%= b.text_field :username %>
+  </p> 
+
+ <p>
+    <%= b.label :Password %><br>
+    <%= b.text_field :password %>
+  </p>
+ 
+  <p>
+	<%= b.label :'Current Branch'%><br>
+	<%= collection_select(:user, :branch_id, Branch.all, :id, :name, prompt: true) %>
+  </p>
+
+  <p>
+	<%= b.label :'Role'%><br>
+	<%= b.select :userrole, options_for_select([["User", "user"], ["Branch Admin", "badmin"],["Admin","admin"]], @user.userrole) %>
+  </p>
+ 
+  <p>
+	<%= b.label :'Active'%><br>
+	<%= b.check_box :isactive %>
+  </p>
+
+ 
+ 
+   <p>
+    <%= b.label :Email %><br>
+    <%= b.text_field :email %>
+  </p>
+  
+  <p>
+    <%= b.submit %>
+  </p>
+<% end %>

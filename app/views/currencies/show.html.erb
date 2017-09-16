@@ -1,0 +1,19 @@
+<p>
+  <strong>Currency Name:</strong>
+  <%= @currency.currencyname %>
+</p>
+<p>
+  <strong>Currency Code:</strong>
+  <%= @currency.currencycode %>
+</p>
+
+<p>
+  <strong>Buying Rate:</strong>
+  <%= @currency.buyrate %>
+</p>
+<p>
+  <strong>Selling Rate:</strong>
+  <%= @currency.sellrate %>
+</p>
+
+<%= link_to 'Back', currencies_path %> | <%= link_to 'Edit', edit_currency_path(@currency) %>

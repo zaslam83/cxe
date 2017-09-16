@@ -1,0 +1,32 @@
+<h1>Transactions Listing</h1>
+
+<table class="gridtable">
+  <tr>
+    <th>Currency Code</th>
+    <th>Branch Name</th>
+    <th>Amount</th>
+    <th>Rate Applied</th>
+	<th>Commission</th>
+	<th>Total Amount</th>	
+    <th>Transaction Type</th>
+	<th>User</th>
+</tr>
+ 
+  <% @transactions.each do |transaction| %>
+    <tr>
+      <td><%= transaction.currency.currencycode %></td>
+      <td><%= transaction.branch.name %></td>
+	  <td><%= transaction.amount %></td>
+	  <td><%= transaction.actualrate %></td>
+	  <td><%= transaction.comission %></td>
+      <td><%= transaction.totalamt %></td>
+ 	  <td><%= transaction.trantype %></td>
+      <td><%= transaction.user.name %></td>
+   
+	  <td><%= link_to 'Show', transaction_path(transaction) %></td>
+	  <td><%= link_to 'Destroy', transaction_path(transaction),
+                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+

@@ -1,0 +1,20 @@
+<h> Branch <h>
+<p>
+  <strong>Name:</strong>
+  <%= @branch.name %>
+</p>
+<p>
+  <strong>City:</strong>
+  <%= @branch.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @branch.state %>
+</p>
+<p>
+  <strong>Address:</strong>
+  <%= @branch.address %>
+</p>
+
+<%= link_to 'Back', branches_path %> | <%= link_to 'Edit', edit_branch_path(@branch) %>

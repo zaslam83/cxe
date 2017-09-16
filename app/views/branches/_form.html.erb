@@ -1,0 +1,25 @@
+<%= form_for @branch do |b| %>
+  <p>
+    <%= b.label :Name %><br>
+    <%= b.text_field :name %>
+  </p>
+ 
+  <p>
+    <%= b.label :City %><br>
+    <%= b.text_field :city %>
+  </p>
+ 
+   <p>
+    <%= b.label :State %><br>
+    <%= b.text_field :state %>
+  </p>
+  
+   <p>
+    <%= b.label :Address %><br>
+    <%= b.text_field :address %>
+  </p>
+  
+  <p>
+    <%= b.submit %>
+  </p>
+<% end %>

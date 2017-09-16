@@ -1,0 +1,133 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){
+  $("#transaction_currency_id").change(function(){
+    $.get("getrate/"+document.getElementById("transaction_currency_id").value,function(data,status){
+      document.getElementById("transaction_actualrate").value= data
+    });
+  });
+
+
+ $("#transaction_amount,#transaction_comission,#transaction_actualrate,#pa,#fx").change(function(){
+	if( document.getElementById("transaction_actualrate").value != ''){
+		
+		var converted = parseFloat(document.getElementById("transaction_amount").value / document.getElementById("transaction_actualrate").value  ) ;
+		var com_val;
+		if (document.getElementById('pa').checked) {
+			com_val = converted * parseFloat(document.getElementById("transaction_comission").value)  /100  ;
+		}else{
+			com_val = parseFloat(document.getElementById("transaction_comission").value);
+		}
+		
+		var total = converted - com_val;
+		
+		document.getElementById("convertedval").value = converted
+		document.getElementById("transaction_totalamt").value = total
+	}
+  });
+  
+  
+  $(window).keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+  
+});
+
+</script>
+
+<h1> Buy Currency </h1>
+<%= form_for :transaction, url: tran_buy_path do |s| %>
+
+<% if @transaction.errors.any? %>
+  <div id="errorExplanation">
+    <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited
+      this transaction from being saved:</h2>
+    <ul>
+    <% @transaction.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+<table>
+<tr>
+<td>  
+  <p>
+	<%= s.label :'Branch: '%>
+	<%= @current_user.branch.name %>
+  </p>
+</td>
+</tr>
+
+<tr>
+<td>  
+  <p>
+	<%= s.label :'Currency Code'%><br>
+	<%= collection_select(:transaction, :currency_id, Currency.all, :id, :currencycode, {prompt: true}) %>
+  </p>
+</td>
+</tr>  
+
+<tr>
+<td>  
+  <p>
+	<%= s.label :'Rate'%><br>
+	<%= s.number_field :actualrate, :readonly => true %>
+  </p>
+</td>  
+</tr>  
+
+<tr>
+<td>  
+  <p>
+	<%= s.label :'Amount'%><br>
+	<%= s.number_field :amount %>
+  </p>
+</td> 
+
+<td>  
+  <p>
+	<label>Converted</label><br>
+	<input type="number" id="convertedval" name="convertedval" readonly= "readonly">
+  </p>
+</td> 
+</tr> 
+
+<tr>
+<td>  
+   <p>
+	<%= s.label :'Commission'%><br>
+	<%= s.number_field :comission, :value =>6 %>
+   </p>
+</td>
+<td>
+   <p>
+	<input type="radio" id= "fx" name="com" value="fixed" checked="checked">Fixed
+	<input type="radio" id= "pa"  name="com" value="percentage">Percentage
+  </p>
+</td> 
+</tr>
+
+<tr>
+<td>
+  <p>
+	<%= s.label :'Total'%><br>
+	<%= s.text_field :totalamt, :readonly => true %>
+  </p>
+</td>
+</tr>
+</table>  
+ <p>
+    <%= s.submit %>
+  </p>
+
+  
+<% end %>
+
+
+<%= link_to 'Back', currencies_path %>

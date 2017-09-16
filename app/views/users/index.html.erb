@@ -1,0 +1,29 @@
+<h1>Listing Users</h1>
+
+<table class="gridtable">
+  <tr>
+    <th>Name</th>
+    <th>User Name</th>
+    <th>Email</th>
+	<th>Current Branch</th>	
+    <th>Role</th>
+	<th>Status</th>
+</tr>
+ 
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.username %></td>
+      <td><%= user.email %></td>
+      <td><%= user.branch_id %></td>
+	  <td><%= user.userrole %></td>
+	  <td><%= user.isactive %></td>
+	  <td><%= link_to 'Show', user_path(user) %></td>
+	  <td><%= link_to 'Edit', edit_user_path(user) %></td>
+	  <td><%= link_to 'Destroy', user_path(user),
+                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'New User', new_user_path %> 

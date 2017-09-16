@@ -1,0 +1,19 @@
+<p>
+  <strong>Currency Name:</strong>
+  <%= @stock.currency.currencyname %>
+</p>
+<p>
+  <strong>Branch Name:</strong>
+  <%= @stock.branch.name %>
+</p>
+
+<p>
+  <strong>Opening Balance:</strong>
+  <%= @stock.openingbalance %>
+</p>
+<p>
+  <strong>Current Balance:</strong>
+  <%= @stock.currentbalance %>
+</p>
+
+<%= link_to 'Back', stocks_path %> | <%= link_to 'Edit', edit_stock_path(@stock) %>
